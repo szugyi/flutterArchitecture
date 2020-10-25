@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/data/service/counter_service_impl.dart';
+import 'package:flutter_architecture/ui/details.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -32,18 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     super.dispose();
     _subscription.cancel();
-  }
-
-  void _startCounter() async {
-    _counterService.start();
-  }
-
-  void _stopCounter() async {
-    _counterService.stop();
-  }
-
-  void _resetCounter() async {
-    _counterService.reset();
   }
 
   @override
@@ -83,8 +72,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ElevatedButton(
                         onPressed: _resetCounter, child: Text("Reset"))))
           ]),
+          Row(children: [
+            Expanded(
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          _startDetails(context);
+                        },
+                        child: Text("Show details"))))
+          ]),
         ],
       ),
     );
+  }
+
+  void _startCounter() {
+    _counterService.start();
+  }
+
+  void _stopCounter() {
+    _counterService.stop();
+  }
+
+  void _resetCounter() {
+    _counterService.reset();
+  }
+
+  void _startDetails(BuildContext context) {
+    Navigator.pushNamed(context, DetailsScreen.routeName, arguments: 42);
   }
 }
