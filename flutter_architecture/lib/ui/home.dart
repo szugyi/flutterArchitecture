@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/data/service/counter_service_impl.dart';
 import 'package:flutter_architecture/ui/details.dart';
+import 'package:flutter_architecture/ui/qr_reader.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -82,6 +83,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: Text("Show details"))))
           ]),
+          Row(children: [
+            Expanded(
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          _startQr(context);
+                        },
+                        child: Text("Show Qr"))))
+          ]),
         ],
       ),
     );
@@ -101,5 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _startDetails(BuildContext context) {
     Navigator.pushNamed(context, DetailsScreen.routeName, arguments: 42);
+  }
+
+  void _startQr(BuildContext context) {
+    Navigator.pushNamed(context, QrCodeReaderScreen.routeName);
   }
 }
