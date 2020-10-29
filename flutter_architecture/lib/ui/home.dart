@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/data/service/counter_service_impl.dart';
 import 'package:flutter_architecture/ui/details.dart';
-import 'package:flutter_architecture/ui/qr_reader.dart';
+import 'package:flutter_architecture/ui/qr/firebase_ml_vision_reader.dart';
+import 'package:flutter_architecture/ui/qr/qr_reader.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key, this.title}) : super(key: key);
@@ -93,6 +94,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: Text("Show Qr"))))
           ]),
+          Row(children: [
+            Expanded(
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          _startMlQr(context);
+                        },
+                        child: Text("Show Qr ML Vision"))))
+          ]),
         ],
       ),
     );
@@ -116,5 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _startQr(BuildContext context) {
     Navigator.pushNamed(context, QrCodeReaderScreen.routeName);
+  }
+
+  void _startMlQr(BuildContext context) {
+    Navigator.pushNamed(context, MaterialBarcodeScanner.routeName);
   }
 }
