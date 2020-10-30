@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   rxdart: ^0.24.1
+  faker: ^1.2.1
 
   # QR scanner
   qr_code_scanner:

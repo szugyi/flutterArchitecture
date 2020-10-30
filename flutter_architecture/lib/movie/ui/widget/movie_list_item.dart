@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/domain/model/movie.dart';
 
 class MovieListItem extends StatelessWidget {
-  MovieListItem({Key key, this.index}) : super(key: key);
+  MovieListItem({Key key, this.movie}) : super(key: key);
 
-  final String index;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Image.network(
-          "https://image.tmdb.org/t/p/w500/betExZlgK0l7CZ9CsCBVcwO1OjL.jpg",
-          fit: BoxFit.cover,
-          width: double.infinity),
+      Image.network(movie.posterImage,
+          fit: BoxFit.cover, width: double.infinity),
       Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
             width: double.infinity,
             child: DecoratedBox(
-              decoration: const BoxDecoration(color: Colors.black38),
+              decoration: BoxDecoration(color: Colors.black38),
               child: Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: EdgeInsets.all(4.0),
                 child: Text(
-                  'Item $index',
+                  movie.title,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1
@@ -34,11 +33,11 @@ class MovieListItem extends StatelessWidget {
           Container(
             width: double.infinity,
             child: DecoratedBox(
-                decoration: const BoxDecoration(color: Colors.black38),
+                decoration: BoxDecoration(color: Colors.black38),
                 child: Padding(
-                  padding: const EdgeInsets.all(4.0),
+                  padding: EdgeInsets.all(4.0),
                   child: Text(
-                    'Budget: $index',
+                    'Budget: ${movie.budget}\$',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1

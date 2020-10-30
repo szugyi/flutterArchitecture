@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/ui/screen/detail/movie_detail_screen.dart';
-import 'package:flutter_architecture/ui/screen/list/movie_list_screen.dart';
+import 'package:flutter_architecture/movie/ui/movie_detail_screen.dart';
+import 'package:flutter_architecture/movie/ui/movie_list_screen.dart';
 
 class MovieApp extends StatelessWidget {
   @override

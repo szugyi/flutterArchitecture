@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture/domain/model/movie.dart';
+import 'package:flutter_architecture/movie/model/movie_detail_view_model.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   MovieDetailScreen({Key key, this.id}) : super(key: key);
 
-  final String id;
+  final int id;
 
   @override
   State<StatefulWidget> createState() {
@@ -12,6 +16,27 @@ class MovieDetailScreen extends StatefulWidget {
 }
 
 class MovieDetailScreenState extends State<MovieDetailScreen> {
+  MovieDetailViewModel _viewModel;
+  Movie _movie;
+  StreamSubscription _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _viewModel = movieDetailViewModelInstance;
+    _subscription = _viewModel.movie.listen((value) => setState(() {
+          _movie = value;
+        }));
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,24 +50,32 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                   centerTitle: false,
-                  title: Text("Movie title",
+                  title: Text(_movie?.title ?? "",
                       style: Theme.of(context).primaryTextTheme.headline6),
-                  background: Image.network(
-                    "https://image.tmdb.org/t/p/w500/f2rYRh4TmhHZutQR2wL2tm97G6I.jpg",
-                    fit: BoxFit.cover,
-                  )),
+                  background: _buildImage()),
             ),
           ];
         },
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          _buildItem(context, "Original title: "),
-          _buildItem(context, "Release date: "),
-          _buildItem(context, "Genre: "),
-          _buildItem(context, "Budget: "),
-          _buildItem(context, "Revenue: "),
+          _buildItem(context, "Original title: ${_movie?.originalTitle}"),
+          _buildItem(context, "Release date: ${_movie?.releaseDate}"),
+          _buildItem(context, "Genre: ${_movie?.genre}"),
+          _buildItem(context, "Budget: ${_movie?.budget}"),
+          _buildItem(context, "Revenue: ${_movie?.revenue}"),
         ]),
       ),
     );
+  }
+
+  Image _buildImage() {
+    if (_movie?.coverImage != null) {
+      return Image.network(
+        _movie?.coverImage,
+        fit: BoxFit.cover,
+      );
+    }
+
+    return null;
   }
 
   Padding _buildItem(BuildContext context, String text) {
