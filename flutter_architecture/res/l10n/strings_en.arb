@@ -1,0 +1,53 @@
+{
+  "movieListTitle": "The Movie DB",
+  "@movieListTitle": {
+    "type": "text"
+  },
+  "movieListError": "Could not load movies!",
+  "@movieListError": {
+    "type": "text"
+  },
+  "movieListBudget": "Budget: {budget}$",
+  "@movieListBudget": {
+    "type": "text",
+    "placeholders": {
+      "budget": {}
+    }
+  },
+
+  "movieDetailOriginalTitle": "Original title: {title}",
+  "@movieDetailOriginalTitle": {
+    "type": "text",
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "movieDetailReleaseDate": "Release date: {date}",
+  "@movieDetailReleaseDate": {
+    "type": "text",
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "movieDetailGenre": "Genre: {genre}",
+  "@movieDetailGenre": {
+    "type": "text",
+    "placeholders": {
+      "genre": {}
+    }
+  },
+  "movieDetailBudget": "Budget: {budget}$",
+  "@movieDetailBudget": {
+    "type": "text",
+    "placeholders": {
+      "budget": {}
+    }
+  },
+  "movieDetailRevenue": "Revenue: {revenue}$",
+  "@movieDetailRevenue": {
+    "type": "text",
+    "placeholders": {
+      "revenue": {}
+    }
+  }
+}

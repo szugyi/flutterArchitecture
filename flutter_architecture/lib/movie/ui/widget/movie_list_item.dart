@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/domain/model/movie.dart';
+import 'package:flutter_gen/gen_l10n/translations.dart';
 
 class MovieListItem extends StatelessWidget {
   MovieListItem({Key key, this.movie}) : super(key: key);
@@ -9,8 +10,7 @@ class MovieListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      Image.network(movie.posterImage,
-          fit: BoxFit.cover, width: double.infinity),
+      Image.network(movie.posterImage, fit: BoxFit.cover, width: double.infinity),
       Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -22,10 +22,7 @@ class MovieListItem extends StatelessWidget {
                 padding: EdgeInsets.all(4.0),
                 child: Text(
                   movie.title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      .copyWith(color: Colors.white),
+                  style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
                 ),
               ),
             ),
@@ -37,11 +34,8 @@ class MovieListItem extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(4.0),
                   child: Text(
-                    'Budget: ${movie.budget}\$',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        .copyWith(color: Colors.white),
+                    Translations.of(context).movieListBudget(movie.budget),
+                    style: Theme.of(context).textTheme.bodyText1.copyWith(color: Colors.white),
                   ),
                 )),
           )

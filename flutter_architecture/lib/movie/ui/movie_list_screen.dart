@@ -3,6 +3,7 @@ import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/movie/model/movie_list_view_model.dart';
 import 'package:flutter_architecture/movie/ui/movie_detail_screen.dart';
 import 'package:flutter_architecture/movie/ui/widget/movie_list_item.dart';
+import 'package:flutter_gen/gen_l10n/translations.dart';
 
 class MovieListScreen extends StatefulWidget {
   @override
@@ -33,13 +34,13 @@ class MovieListScreenState extends State<MovieListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("The Movie DB"),
+          title: Text(Translations.of(context).movieListTitle),
         ),
         body: StreamBuilder(
             stream: _viewModel.movies,
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                return Center(child: Text("Error!"));
+                return Center(child: Text(Translations.of(context).movieListError));
               } else if (snapshot.data == null) {
                 return Center(child: CircularProgressIndicator());
               } else {

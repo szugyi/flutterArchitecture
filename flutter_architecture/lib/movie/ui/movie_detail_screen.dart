@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/movie/model/movie_detail_view_model.dart';
+import 'package:flutter_gen/gen_l10n/translations.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   MovieDetailScreen({Key key, this.id}) : super(key: key);
@@ -25,11 +26,9 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
     super.initState();
 
     _viewModel = movieDetailViewModelInstance;
-    _subscription = _viewModel.movie.listen((value) =>
-        setState(() {
+    _subscription = _viewModel.movie.listen((value) => setState(() {
           _movie = value;
         }));
-
 
     _viewModel.loadMovie(widget.id);
   }
@@ -54,21 +53,17 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                   centerTitle: false,
-                  title: Text(_movie?.title ?? "",
-                      style: Theme
-                          .of(context)
-                          .primaryTextTheme
-                          .headline6),
+                  title: Text(_movie?.title ?? "", style: Theme.of(context).primaryTextTheme.headline6),
                   background: _buildImage()),
             ),
           ];
         },
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          _buildItem(context, "Original title: ${_movie?.originalTitle}"),
-          _buildItem(context, "Release date: ${_movie?.releaseDate}"),
-          _buildItem(context, "Genre: ${_movie?.genre}"),
-          _buildItem(context, "Budget: ${_movie?.budget}"),
-          _buildItem(context, "Revenue: ${_movie?.revenue}"),
+          _buildItem(context, Translations.of(context).movieDetailOriginalTitle(_movie?.originalTitle)),
+          _buildItem(context, Translations.of(context).movieDetailReleaseDate(_movie?.releaseDate)),
+          _buildItem(context, Translations.of(context).movieDetailGenre(_movie?.genre)),
+          _buildItem(context, Translations.of(context).movieDetailBudget(_movie?.budget)),
+          _buildItem(context, Translations.of(context).movieDetailRevenue(_movie?.revenue)),
         ]),
       ),
     );
@@ -88,10 +83,7 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
   Padding _buildItem(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(text, style: Theme
-          .of(context)
-          .textTheme
-          .headline6),
+      child: Text(text, style: Theme.of(context).textTheme.headline6),
     );
   }
 }

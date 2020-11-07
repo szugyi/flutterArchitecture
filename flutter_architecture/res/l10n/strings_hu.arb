@@ -1,0 +1,11 @@
+{
+  "movieListTitle": "The Movie DB",
+  "movieListError": "Hiba történt a lista betöltése közben!",
+  "movieListBudget": "Költségvetés: {budget}$",
+
+  "movieDetailOriginalTitle": "Eredeti cím: {title}",
+  "movieDetailReleaseDate": "Megjelenés: {date}",
+  "movieDetailGenre": "Műfaj: {genre}",
+  "movieDetailBudget": "Költségvetés: {budget}$",
+  "movieDetailRevenue": "Bevétel: {revenue}$"
+}
