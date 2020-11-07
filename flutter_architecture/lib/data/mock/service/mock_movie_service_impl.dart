@@ -4,9 +4,9 @@ import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/domain/store/movie_store.dart';
 import 'package:rxdart/rxdart.dart';
 
-MovieServiceImpl movieServiceInstance = MovieServiceImpl();
+MockMovieServiceImpl movieServiceInstance = MockMovieServiceImpl();
 
-class MovieServiceImpl implements MovieAction, MovieStore {
+class MockMovieServiceImpl implements MovieAction, MovieStore {
   final _faker = Faker();
 
   var _movies = BehaviorSubject<List<Movie>>();
@@ -44,7 +44,7 @@ class MovieServiceImpl implements MovieAction, MovieStore {
               "https://image.tmdb.org/t/p/w500/betExZlgK0l7CZ9CsCBVcwO1OjL.jpg"));
     }
 
-    _movies.value = generatedMovies;
+    _movies.add(generatedMovies);
   }
 
   void dispose() {

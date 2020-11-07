@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/data/service/counter_service_impl.dart';
+import 'package:flutter_architecture/data/integration/service/counter_service_impl.dart';
 import 'package:flutter_architecture/ui/details.dart';
 import 'package:flutter_architecture/ui/qr/firebase_ml_vision_reader.dart';
 import 'package:flutter_architecture/ui/qr/qr_reader.dart';

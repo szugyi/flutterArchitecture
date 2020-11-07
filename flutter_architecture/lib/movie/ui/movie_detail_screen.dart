@@ -25,9 +25,13 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
     super.initState();
 
     _viewModel = movieDetailViewModelInstance;
-    _subscription = _viewModel.movie.listen((value) => setState(() {
+    _subscription = _viewModel.movie.listen((value) =>
+        setState(() {
           _movie = value;
         }));
+
+
+    _viewModel.loadMovie(widget.id);
   }
 
   @override
@@ -51,7 +55,10 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
               flexibleSpace: FlexibleSpaceBar(
                   centerTitle: false,
                   title: Text(_movie?.title ?? "",
-                      style: Theme.of(context).primaryTextTheme.headline6),
+                      style: Theme
+                          .of(context)
+                          .primaryTextTheme
+                          .headline6),
                   background: _buildImage()),
             ),
           ];
@@ -81,7 +88,10 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
   Padding _buildItem(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(text, style: Theme.of(context).textTheme.headline6),
+      child: Text(text, style: Theme
+          .of(context)
+          .textTheme
+          .headline6),
     );
   }
 }

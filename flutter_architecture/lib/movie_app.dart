@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture/movie/ui/movie_detail_screen.dart';
 import 'package:flutter_architecture/movie/ui/movie_list_screen.dart';
 
 class MovieApp extends StatelessWidget {
@@ -12,9 +11,7 @@ class MovieApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: "/",
-      routes: {
-        "/": (context) => MovieListScreen()
-      },
+      routes: {"/": (context) => MovieListScreen()},
     );
   }
 }

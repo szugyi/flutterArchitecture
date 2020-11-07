@@ -1,5 +1,5 @@
 import 'package:flutter_architecture/core/model/view_model.dart';
-import 'package:flutter_architecture/data/service/movie_service_impl.dart';
+import 'package:flutter_architecture/data/integration/service/movie_service_impl.dart';
 import 'package:flutter_architecture/domain/action/movie_action.dart';
 import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/domain/store/movie_store.dart';
