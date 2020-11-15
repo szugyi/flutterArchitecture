@@ -6,10 +6,6 @@ import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/domain/store/movie_store.dart';
 import 'package:rxdart/rxdart.dart';
 
-Dio dioInstance = Dio();
-MovieServiceImpl movieServiceInstance =
-    MovieServiceImpl(MovieDbClient(dioInstance));
-
 class MovieServiceImpl implements MovieAction, MovieStore {
   var _movies = BehaviorSubject<List<Movie>>();
 

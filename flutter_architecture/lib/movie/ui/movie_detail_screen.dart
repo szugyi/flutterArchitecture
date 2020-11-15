@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/movie/model/movie_detail_view_model.dart';
 import 'package:flutter_gen/gen_l10n/translations.dart';
+import 'package:get_it/get_it.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   MovieDetailScreen({Key key, this.id}) : super(key: key);
@@ -25,7 +26,7 @@ class MovieDetailScreenState extends State<MovieDetailScreen> {
   void initState() {
     super.initState();
 
-    _viewModel = movieDetailViewModelInstance;
+    _viewModel = GetIt.I<MovieDetailViewModel>();
     _subscription = _viewModel.movie.listen((value) => setState(() {
           _movie = value;
         }));

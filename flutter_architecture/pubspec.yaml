@@ -27,6 +27,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.16.1
+  # DI
+  get_it: ^5.0.1
+  injectable: ^1.0.5
   # rxDart
   rxdart: ^0.24.1
   # Fake data generator for mock
@@ -45,6 +48,9 @@ dev_dependencies:
     sdk: flutter
   # Code generation
   build_runner: ^1.10.4
+  # DI code generation with injectable
+  injectable_generator: ^1.0.6
+  # Networking code generation
   retrofit_generator: ^1.4.0
   json_serializable: ^3.5.0
 

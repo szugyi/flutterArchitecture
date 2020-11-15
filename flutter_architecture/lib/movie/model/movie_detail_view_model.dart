@@ -1,16 +1,15 @@
 import 'package:flutter_architecture/core/model/view_model.dart';
-import 'package:flutter_architecture/data/integration/service/movie_service_impl.dart';
 import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/domain/store/movie_store.dart';
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
-MovieDetailViewModel movieDetailViewModelInstance =
-    MovieDetailViewModel(movieServiceInstance);
-
+@injectable
 class MovieDetailViewModel implements ViewModel {
-  MovieStore _movieStore;
-
+  @factoryMethod
   MovieDetailViewModel(this._movieStore);
+
+  MovieStore _movieStore;
 
   var _movie = PublishSubject<Movie>();
 

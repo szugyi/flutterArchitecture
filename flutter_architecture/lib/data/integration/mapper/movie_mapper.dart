@@ -23,7 +23,15 @@ extension MovieMapper on MovieApiModel {
       genre: this.genres[0]?.name,
       budget: this.budget.toDouble(),
       revenue: this.revenue.toDouble(),
-      posterImage: "https://image.tmdb.org/t/p/w500" + this.posterPath,
-      coverImage: "https://image.tmdb.org/t/p/w500" + this.backdropPath,
+      posterImage: _getImageUrl(this.posterPath),
+      coverImage: _getImageUrl(this.backdropPath),
       releaseDate: this.releaseDate);
+}
+
+String _getImageUrl(String path) {
+  if (path == null) {
+    return null;
+  } else {
+    return "https://image.tmdb.org/t/p/w500" + path;
+  }
 }

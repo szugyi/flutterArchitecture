@@ -4,6 +4,7 @@ import 'package:flutter_architecture/movie/model/movie_list_view_model.dart';
 import 'package:flutter_architecture/movie/ui/movie_detail_screen.dart';
 import 'package:flutter_architecture/movie/ui/widget/movie_list_item.dart';
 import 'package:flutter_gen/gen_l10n/translations.dart';
+import 'package:get_it/get_it.dart';
 
 class MovieListScreen extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class MovieListScreenState extends State<MovieListScreen> {
   void initState() {
     super.initState();
 
-    _viewModel = movieListViewModel;
+    _viewModel = GetIt.I<MovieListViewModel>();
     _viewModel.loadMovies();
   }
 
@@ -55,10 +56,8 @@ class MovieListScreenState extends State<MovieListScreen> {
         children: movies.map((movie) {
           return GestureDetector(
             child: MovieListItem(movie: movie),
-            onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => MovieDetailScreen(id: movie.id)))
-            },
+            onTap: () =>
+                {Navigator.of(context).push(MaterialPageRoute(builder: (context) => MovieDetailScreen(id: movie.id)))},
           );
         }).toList());
   }
