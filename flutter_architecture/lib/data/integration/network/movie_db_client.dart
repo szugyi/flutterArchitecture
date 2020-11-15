@@ -6,7 +6,7 @@ import 'model/search_result.dart';
 
 part 'movie_db_client.g.dart';
 
-@RestApi(baseUrl: "https://api.themoviedb.org/3/")
+@RestApi()
 abstract class MovieDbClient {
   factory MovieDbClient(Dio dio, {String baseUrl}) = _MovieDbClient;
 

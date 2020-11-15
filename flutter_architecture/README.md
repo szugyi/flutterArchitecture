@@ -1,16 +1,36 @@
-# flutter_architecture
+# Project overview
+## Code generation
+The project is relying heavily on code generation
 
-A new Flutter application.
+### Run the generator
+if you want the generator to run one time and exit use
 
-## Getting Started
+`flutter packages pub run build_runner build`
 
-This project is a starting point for a Flutter application.
+Use the `watch` flag to watch the files' system for edits and rebuild as necessary.
 
-A few resources to get you started if this is your first Flutter project:
+`flutter packages pub run build_runner watch`
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Problems with the generation?
+Make sure you always Save your files before running the generator, if that does not work you can always try to clean and rebuild.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`flutter packages pub run build_runner clean`
+
+### Packages using code generation
+- injectable - for generating DI setup
+- json_serializable - for generating serializable POJOs
+- retrofit - for generating API client code with Dio
+
+## Localization
+Localization is implemented using `flutter_localizations`
+
+Read more [here](https://pascalw.me/blog/2020/10/02/flutter-1.22-internationalization.html)
+
+## DI
+DI is supported via `get_it` which is a Service Locator based DI approach. For more info see the [documentation](https://pub.dev/packages/get_it)
+`injectable` is used to generate `get_it` configuration using annotations. For more info see the [documentation](https://pub.dev/packages/injectable)
+
+## Networking
+json_serializable
+dio
+retrofit

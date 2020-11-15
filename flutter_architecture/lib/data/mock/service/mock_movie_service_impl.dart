@@ -4,8 +4,6 @@ import 'package:flutter_architecture/domain/model/movie.dart';
 import 'package:flutter_architecture/domain/store/movie_store.dart';
 import 'package:rxdart/rxdart.dart';
 
-MockMovieServiceImpl movieServiceInstance = MockMovieServiceImpl();
-
 class MockMovieServiceImpl implements MovieAction, MovieStore {
   final _faker = Faker();
 
@@ -13,8 +11,7 @@ class MockMovieServiceImpl implements MovieAction, MovieStore {
 
   @override
   Stream<Movie> getMovie(int id) {
-    return _movies.stream
-        .map((movieList) => movieList.firstWhere((item) => item.id == id));
+    return _movies.stream.map((movieList) => movieList.firstWhere((item) => item.id == id));
   }
 
   @override
@@ -35,19 +32,12 @@ class MockMovieServiceImpl implements MovieAction, MovieStore {
           originalTitle: _faker.lorem.word(),
           budget: _faker.randomGenerator.decimal(scale: 100000),
           revenue: _faker.randomGenerator.decimal(scale: 100000),
-          releaseDate:
-              _faker.date.dateTime(minYear: 1980, maxYear: 2020).toString(),
+          releaseDate: _faker.date.dateTime(minYear: 1980, maxYear: 2020).toString(),
           genre: _faker.lorem.word(),
-          coverImage:
-              "https://image.tmdb.org/t/p/w500/f2rYRh4TmhHZutQR2wL2tm97G6I.jpg",
-          posterImage:
-              "https://image.tmdb.org/t/p/w500/betExZlgK0l7CZ9CsCBVcwO1OjL.jpg"));
+          coverImage: "https://image.tmdb.org/t/p/w500/f2rYRh4TmhHZutQR2wL2tm97G6I.jpg",
+          posterImage: "https://image.tmdb.org/t/p/w500/betExZlgK0l7CZ9CsCBVcwO1OjL.jpg"));
     }
 
     _movies.add(generatedMovies);
-  }
-
-  void dispose() {
-    _movies.close();
   }
 }

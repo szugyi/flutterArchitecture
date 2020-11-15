@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_architecture/data/integration/mapper/movie_mapper.dart';
 import 'package:flutter_architecture/data/integration/network/movie_db_client.dart';
 import 'package:flutter_architecture/domain/action/movie_action.dart';
@@ -15,8 +14,7 @@ class MovieServiceImpl implements MovieAction, MovieStore {
 
   @override
   Stream<Movie> getMovie(int id) {
-    return _movies.stream
-        .map((movieList) => movieList.firstWhere((item) => item.id == id));
+    return _movies.stream.map((movieList) => movieList.firstWhere((item) => item.id == id));
   }
 
   @override
@@ -28,12 +26,10 @@ class MovieServiceImpl implements MovieAction, MovieStore {
   Future<void> loadMovies() async {
     var result = await _client.searchMovies(query: "the", page: 1);
 
-    var movieListFutures = result.results.map((movieListResult) async =>
-        await _client.getMovie(movieId: movieListResult.id));
+    var movieListFutures =
+        result.results.map((movieListResult) async => await _client.getMovie(movieId: movieListResult.id));
 
-    var movieList = (await Future.wait(movieListFutures))
-        .map((movie) => movie.toDomainModel())
-        .toList();
+    var movieList = (await Future.wait(movieListFutures)).map((movie) => movie.toDomainModel()).toList();
 
     _movies.add(movieList);
   }

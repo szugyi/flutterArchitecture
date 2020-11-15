@@ -1,11 +1,15 @@
+import 'package:flutter_architecture/core/flavor.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 import 'injector.config.dart';
 
-@InjectableInit(
-  initializerName: r'$initGetIt', // default
-  preferRelativeImports: true, // default
-  asExtension: false, // default
-)
-void configureDependencies() => $initGetIt(GetIt.instance);
+const mock = Environment('mock');
+const integration = Environment('integration');
+
+@InjectableInit()
+void configureDependencies(String env, FlavorConfig config) {
+  GetIt.instance.registerSingleton<FlavorConfig>(config);
+
+  $initGetIt(GetIt.instance, environment: env);
+}

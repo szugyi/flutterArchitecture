@@ -9,7 +9,6 @@ part of 'movie_db_client.dart';
 class _MovieDbClient implements MovieDbClient {
   _MovieDbClient(this._dio, {this.baseUrl}) {
     ArgumentError.checkNotNull(_dio, '_dio');
-    baseUrl ??= 'https://api.themoviedb.org/3/';
   }
 
   final Dio _dio;
